@@ -17,7 +17,7 @@ type
     iWidth           : integer;
     procedure CheckPoint(aPoint: TPoint);
   public
-    { Déclarations publiques }
+    { DÃ©clarations publiques }
   end;
 
 var
@@ -31,15 +31,13 @@ uses
 {$R *.dfm}
 
 procedure TForm2.CheckPoint(aPoint: TPoint);
-var
-   i: integer;
 begin
    while (aPoint.X <> iWidth) and (aPoint.Y <> iWidth) do
    begin
       if (aPoint.X < iWidth) and (aPoint.Y < iWidth) then
       begin
-         // si deux chemins sont dispo. on en créé un qui descend
-         // et on boucle récursivement jusqu'a atteindre le point 20;20
+         // si deux chemins sont dispo. on en crÃ©Ã© un qui descend
+         // et on boucle rÃ©cursivement jusqu'a atteindre le point 20;20
          CheckPoint(TPoint.Create(aPoint.X, aPoint.Y + 1));
 
          // et le point actuel va vers la droite
@@ -55,10 +53,10 @@ begin
       end;
    end;
 
-   // nombre total de chemins incrémenté de 1
+   // nombre total de chemins incrÃ©mentÃ© de 1
    Inc(iNbTotal);
 
-   // mise à jour d'un compteur par paquet de 10Mio
+   // mise Ã  jour d'un compteur par paquet de 10Mio
    // plus rapide de faire ainsi que iFin mod 10Mio
    Inc(iCompte);
    if iCompte = 10000000 then
@@ -66,7 +64,7 @@ begin
       iCompte         := 0;
       lbTotal.Caption := iNbTotal.ToString;
 
-      // notification de mise à jour
+      // notification de mise Ã  jour
       Application.ProcessMessages;
    end;
 end;
@@ -77,15 +75,15 @@ var
 begin
    iWidth   := seEdit.Value;
 
-   // attention à bien utilisé le type Int64 plutôt que integer
+   // attention Ã  bien utilisÃ© le type Int64 plutÃ´t que integer
    // car on arrive rapidement aux bornes
    iNbTotal := 0;
    iCompte  := 0;
 
-   // création d'un chrono et affichage en seconde de la durée du traitement
+   // crÃ©ation d'un chrono et affichage en seconde de la durÃ©e du traitement
    Chrono   := TStopwatch.StartNew;
 
-   // création du point d'origine
+   // crÃ©ation du point d'origine
    CheckPoint(TPoint.Create(0, 0));
 
    Chrono.Stop;
